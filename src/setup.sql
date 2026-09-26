@@ -1,6 +1,6 @@
--- ========================================
+-- ======================
 -- Service Project Table
--- ========================================
+-- =====================
 CREATE TABLE service_project (
     project_id SERIAL PRIMARY KEY,
     organization_id INTEGER NOT NULL,
@@ -11,9 +11,9 @@ CREATE TABLE service_project (
     FOREIGN KEY (organization_id) REFERENCES organization (organization_id)
 );
 
--- ========================================
+-- ======================================
 -- Insert sample data: Service Projects
--- ========================================
+-- ======================================
 INSERT INTO service_project (organization_id, title, description, location, project_date)
 VALUES
 (1, 'Community Garden Build', 'Building raised garden beds for a local school.', 'La Paz', '2026-10-01'),
@@ -32,17 +32,17 @@ VALUES
 (3, 'Youth Mentorship Program', 'Pairing volunteers with at-risk youth.', 'Cochabamba', '2026-11-25'),
 (3, 'Disaster Relief Support', 'Assisting families affected by natural disasters.', 'Santa Cruz', '2026-12-12');
 
--- ========================================
+-- ==============
 -- Category Table
--- ========================================
+-- ===============
 CREATE TABLE category (
     category_id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL
 );
 
--- ========================================
+-- ==============================
 -- Project-Category Junction Table
--- ========================================
+-- ==============================
 CREATE TABLE project_category (
     project_id INTEGER NOT NULL,
     category_id INTEGER NOT NULL,
@@ -51,9 +51,9 @@ CREATE TABLE project_category (
     FOREIGN KEY (category_id) REFERENCES category (category_id)
 );
 
--- ========================================
+-- =============================
 -- Insert sample data: Categories
--- ========================================
+-- =============================
 INSERT INTO category (name)
 VALUES
 ('Community Development'),
