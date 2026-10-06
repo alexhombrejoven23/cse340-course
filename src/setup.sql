@@ -1,4 +1,25 @@
--- ======================
+
+-- Organization Table
+
+CREATE TABLE organization (
+    organization_id SERIAL PRIMARY KEY,
+    name VARCHAR(150) NOT NULL,
+    description TEXT NOT NULL,
+    contact_email VARCHAR(255) NOT NULL,
+    logo_filename VARCHAR(255) NOT NULL
+);
+
+-- =================================
+-- Insert sample data: Organizations
+-- =================================
+INSERT INTO organization (name, description, contact_email, logo_filename)
+VALUES
+('BrightFuture Builders', 'A nonprofit focused on building homes and infrastructure for underserved communities.', 'info@brightfuturebuilders.org', 'brightfuture-logo.png'),
+('GreenHarvest Growers', 'An organization promoting sustainable agriculture and community gardens.', 'contact@greenharvest.org', 'greenharvest-logo.png'),
+('UnityServe Volunteers', 'A volunteer network supporting families through food, clothing, and mentorship programs.', 'hello@unityserve.org', 'unityserve-logo.png');
+
+
+-- =====================
 -- Service Project Table
 -- =====================
 CREATE TABLE service_project (
