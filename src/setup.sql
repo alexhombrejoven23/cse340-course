@@ -9,9 +9,9 @@ CREATE TABLE organization (
     logo_filename VARCHAR(255) NOT NULL
 );
 
--- =================================
+
 -- Insert sample data: Organizations
--- =================================
+
 INSERT INTO organization (name, description, contact_email, logo_filename)
 VALUES
 ('BrightFuture Builders', 'A nonprofit focused on building homes and infrastructure for underserved communities.', 'info@brightfuturebuilders.org', 'brightfuture-logo.png'),
@@ -19,9 +19,9 @@ VALUES
 ('UnityServe Volunteers', 'A volunteer network supporting families through food, clothing, and mentorship programs.', 'hello@unityserve.org', 'unityserve-logo.png');
 
 
--- =====================
+
 -- Service Project Table
--- =====================
+
 CREATE TABLE service_project (
     project_id SERIAL PRIMARY KEY,
     organization_id INTEGER NOT NULL,
@@ -32,9 +32,9 @@ CREATE TABLE service_project (
     FOREIGN KEY (organization_id) REFERENCES organization (organization_id)
 );
 
--- ======================================
+
 -- Insert sample data: Service Projects
--- ======================================
+
 INSERT INTO service_project (organization_id, title, description, location, project_date)
 VALUES
 (1, 'Community Garden Build', 'Building raised garden beds for a local school.', 'La Paz', '2026-10-01'),
@@ -53,17 +53,17 @@ VALUES
 (3, 'Youth Mentorship Program', 'Pairing volunteers with at-risk youth.', 'Cochabamba', '2026-11-25'),
 (3, 'Disaster Relief Support', 'Assisting families affected by natural disasters.', 'Santa Cruz', '2026-12-12');
 
--- ==============
+
 -- Category Table
--- ===============
+
 CREATE TABLE category (
     category_id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL
 );
 
--- ==============================
+
 -- Project-Category Junction Table
--- ==============================
+
 CREATE TABLE project_category (
     project_id INTEGER NOT NULL,
     category_id INTEGER NOT NULL,
@@ -72,9 +72,9 @@ CREATE TABLE project_category (
     FOREIGN KEY (category_id) REFERENCES category (category_id)
 );
 
--- =============================
+
 -- Insert sample data: Categories
--- =============================
+
 INSERT INTO category (name)
 VALUES
 ('Community Development'),
@@ -82,9 +82,8 @@ VALUES
 ('Education and Mentorship'),
 ('Emergency Relief');
 
--- ========================================
 -- Insert sample data: Project-Category Associations
--- ========================================
+
 INSERT INTO project_category (project_id, category_id)
 VALUES
 (1, 1),
@@ -102,3 +101,28 @@ VALUES
 (13, 3),
 (14, 3),
 (15, 4);
+
+-- Roles Table
+
+CREATE TABLE roles (
+    role_id SERIAL PRIMARY KEY,
+    role_name VARCHAR(50) UNIQUE NOT NULL,
+    role_description TEXT
+);
+
+-- Insert sample data: Roles
+
+INSERT INTO roles (role_name, role_description) VALUES 
+    ('user', 'Standard user with basic access'),
+    ('admin', 'Administrator with full system access');
+
+-- Users Table
+
+CREATE TABLE users (
+    user_id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    role_id INTEGER REFERENCES roles(role_id),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
