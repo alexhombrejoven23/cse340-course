@@ -1,4 +1,32 @@
-import { authenticateUser } from '../models/users.js';
+import bcrypt from 'bcrypt';
+import { authenticateUser, createUser } from '../models/users.js';
+
+const showUserRegistrationForm = (req, res) => {
+    res.render('register', { title: 'Register' });
+};
+
+const processUserRegistrationForm = async (req, res) => {
+    const { name, email, password } = req.body;
+
+    try {
+
+        const saltRounds = 10;
+        const passwordHash = await bcrypt.hash(password, saltRounds);
+
+        await createUser(name, email, passwordHash);
+
+        req.flash('success', 'Registration successful! Please log in.');
+        res.redirect('/login');
+    } catch (error) {
+        if (error.code === '23505') {
+            req.flash('error', 'That email is already registered.');
+        } else {
+            console.error('Error during registration:', error);
+            req.flash('error', 'An error occurred during registration. Please try again.');
+        }
+        res.redirect('/register');
+    }
+};
 
 const showLoginForm = (req, res) => {
     res.render('login', { title: 'Login' });
@@ -53,4 +81,12 @@ const showDashboard = (req, res) => {
     res.render('dashboard', { title: 'Dashboard', name, email });
 };
 
-export { showLoginForm, processLoginForm, processLogout, requireLogin, showDashboard };
+export {
+    showUserRegistrationForm,
+    processUserRegistrationForm,
+    showLoginForm,
+    processLoginForm,
+    processLogout,
+    requireLogin,
+    showDashboard
+};
