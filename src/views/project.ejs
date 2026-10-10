@@ -7,15 +7,20 @@
         <h2>
             <%= project.title %>
         </h2>
-        <p>Description: <%= project.description %>
+        <p>
+            Description: <%= project.description %>
         </p>
-        <p>Date: <%= project.project_date %>
+        <p>Date: <%= new Date(project.project_date).toLocaleDateString('en-US', { year: 'numeric' , month: 'long' ,
+                day: 'numeric' }) %>
         </p>
-        <p>Location: <%= project.location %>
+        <p>
+            Location: <%= project.location %>
         </p>
-        <p>Organization: <a href="/organization/<%= project.organization_id %>">
+        <p>Organization:
+            <a href="/organization/<%= project.organization_id %>">
                 <%= project.organization_name %>
-            </a></p>
+            </a>
+        </p>
 
         <p>Categories:
             <% categories.forEach(category=> { %>
@@ -25,6 +30,10 @@
                 <% }) %>
         </p>
 
-        <p><a href="/assign-categories/<%= project.project_id %>">Edit Categories</a></p>
+        <% if (user && user.role_name==='admin' ) { %>
+            <p>
+                <a href="/assign-categories/<%= project.project_id %>">Edit Categories</a>
+            </p>
+            <% } %>
     </main>
     <%- include('partials/footer') %>

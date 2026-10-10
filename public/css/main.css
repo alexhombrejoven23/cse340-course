@@ -1,6 +1,4 @@
-/* ===========================================
-   CSE 340 Service Network - Main Stylesheet
-   =========================================== */
+/* CSE 340 Service Network - Main Stylesheet */
 
 :root {
     --color-primary: #1a5f7a;
@@ -30,9 +28,7 @@ body {
     line-height: 1.6;
 }
 
-/* ===========
-   Navigation
-   =========== */
+/* Navigation */
 
 nav {
     background-color: var(--color-primary-dark);
@@ -69,9 +65,7 @@ nav a:focus {
     outline: none;
 }
 
-/* ==============
-   Main content
-   ============== */
+/* Main content */
 
 main {
     max-width: 900px;
@@ -107,9 +101,7 @@ p {
     margin: 2rem auto 0;
 }
 
-/* ============================================
-   Lists (Organizations, Projects, Categories)
-   ============================================ */
+/* Lists (Organizations, Projects, Categories) */
 
 main ul {
     list-style: none;
@@ -141,9 +133,7 @@ main ul li strong {
     color: var(--color-primary-dark);
 }
 
-/* ======
-   Footer
-   ====== */
+/* Footer */
 
 footer {
     background-color: var(--color-primary-dark);
@@ -159,9 +149,7 @@ footer p {
     margin: 0;
 }
 
-/* ===================
-   Responsive - Mobile
-   =================== */
+/* Responsive - Mobile */
 
 @media (max-width: 600px) {
     nav {
@@ -190,4 +178,159 @@ footer p {
         flex-direction: column;
         text-align: center;
     }
+}
+
+/*  Flash messages (alerts) */
+
+.alert {
+    max-width: 900px;
+    margin: 1.5rem auto 0;
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--radius);
+    border-left: 5px solid var(--color-primary);
+    background-color: var(--color-white);
+    box-shadow: var(--shadow-sm);
+}
+
+.alert p {
+    margin: 0.25rem 0;
+    max-width: none;
+}
+
+.alert.success {
+    border-left-color: #2f855a;
+    background-color: #f0fff4;
+}
+
+.alert.success p {
+    color: #276749;
+}
+
+.alert.error {
+    border-left-color: #c53030;
+    background-color: #fff5f5;
+}
+
+.alert.error p {
+    color: #9b2c2c;
+}
+
+.alert.warning {
+    border-left-color: #b7791f;
+    background-color: #fffaf0;
+}
+
+.alert.warning p {
+    color: #975a16;
+}
+
+.alert.info {
+    border-left-color: var(--color-primary);
+    background-color: #ebf8ff;
+}
+
+.alert.info p {
+    color: var(--color-primary-dark);
+}
+
+/* Forms */
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+    color: var(--color-primary-dark);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    max-width: 480px;
+    padding: 0.6rem 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    font-family: inherit;
+    background-color: var(--color-white);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: 2px solid var(--color-accent);
+    border-color: var(--color-accent);
+}
+
+button,
+.button {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    border-radius: var(--radius);
+    padding: 0.65rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+button:hover,
+.button:hover {
+    background-color: var(--color-primary-dark);
+}
+
+/* Tables (registered users) */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    background-color: var(--color-white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+th,
+td {
+    padding: 0.85rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+}
+
+th {
+    background-color: var(--color-primary-dark);
+    color: var(--color-white);
+}
+
+tbody tr:nth-child(even) {
+    background-color: var(--color-background);
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Links and paragraphs that sit outside <main> */
+
+body>p {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+main a,
+body>p a {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+main a:hover,
+body>p a:hover {
+    color: var(--color-primary-dark);
 }
