@@ -3,7 +3,7 @@ import express from 'express';
 import { showHomePage } from './controllers/index.js';
 import { showOrganizationsPage, showOrganizationDetailsPage, showNewOrganizationForm, processNewOrganizationForm, organizationValidation, showEditOrganizationForm, processEditOrganizationForm } from './controllers/organizations.js';
 import { testErrorPage } from './controllers/errors.js';
-import { showProjectsPage, showProjectDetailsPage, showNewProjectForm, processNewProjectForm, projectValidation } from './controllers/projects.js';
+import { showProjectsPage, showProjectDetailsPage, showNewProjectForm, processNewProjectForm, projectValidation, processVolunteerSignup, processVolunteerRemoval } from './controllers/projects.js';
 import { showCategoriesPage, showCategoryDetailsPage, showAssignCategoriesForm, processAssignCategoriesForm, showNewCategoryForm, processNewCategoryForm, showEditCategoryForm, processEditCategoryForm, categoryValidation } from './controllers/categories.js';
 import { showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout, requireLogin, requireRole, showDashboard, showUsersPage } from './controllers/users.js';
 
@@ -45,5 +45,8 @@ router.get('/logout', processLogout);
 router.get('/dashboard', requireLogin, showDashboard);
 
 router.get('/users', requireRole('admin'), showUsersPage);
+
+router.post('/volunteer/:id', requireLogin, processVolunteerSignup);
+router.post('/unvolunteer/:id', requireLogin, processVolunteerRemoval);
 
 export default router;

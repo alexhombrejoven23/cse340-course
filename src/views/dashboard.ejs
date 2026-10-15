@@ -5,10 +5,10 @@
             <%= title %>
         </h1>
 
-        <h2>Dashboard</h2>
+        <h2>Profile</h2>
         <p>Name: <%= name %>
         </p>
-        <p>Username: <%= email %>
+        <p>Email: <%= email %>
         </p>
 
         <% if (user && user.role_name==='admin' ) { %>
@@ -16,6 +16,29 @@
                 <a href="/users">View Registered Users</a>
             </p>
             <% } %>
+
+                <h2>My Volunteer Projects</h2>
+                <% if (volunteerProjects.length===0) { %>
+                    <p>You have not signed up for any projects yet.</p>
+                    <% } else { %>
+                        <ul class="volunteer-list">
+                            <% volunteerProjects.forEach(project=> { %>
+                                <li>
+                                    <a href="/project/<%= project.project_id %>">
+                                        <%= project.title %>
+                                    </a>
+                                    —
+                                    <%= new Date(project.project_date).toLocaleDateString('en-US', { year: 'numeric' ,
+                                        month: 'long' , day: 'numeric' }) %>
+                                        — <%= project.location %>
+                                            <form action="/unvolunteer/<%= project.project_id %>" method="POST">
+                                                <input type="hidden" name="redirectTo" value="dashboard">
+                                                <button type="submit">Remove</button>
+                                            </form>
+                                </li>
+                                <% }); %>
+                        </ul>
+                        <% } %>
     </main>
 
     <%- include('partials/footer') %>

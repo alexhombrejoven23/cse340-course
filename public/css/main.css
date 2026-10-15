@@ -334,3 +334,8 @@ main a:hover,
 body>p a:hover {
     color: var(--color-primary-dark);
 }
+
+.volunteer-list form {
+    display: inline;
+    margin-left: 0.5rem;
+}
